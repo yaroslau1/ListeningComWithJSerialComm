@@ -174,7 +174,6 @@ public class ListeningCom implements SerialPortDataListener {
 
 	@Override
 	public void serialEvent(SerialPortEvent arg0) {
-		start = System.currentTimeMillis();
 		while (userPort.bytesAvailable() == 0) {}
 			
 		if(userPort.bytesAvailable() > 0) {
@@ -185,10 +184,8 @@ public class ListeningCom implements SerialPortDataListener {
 				bytesRiesived.add(readBuffer[i]);
 			}
 			//control.addToList(bytesRiesived);
-			stop = System.currentTimeMillis();
 			
 			AdvancedMainFrame.addToJTextArea("Read " + numRead + " bytes." + Arrays.toString(readBuffer));
-			AdvancedMainFrame.addToJTextArea(stop - start);
 
 		}
 	}
