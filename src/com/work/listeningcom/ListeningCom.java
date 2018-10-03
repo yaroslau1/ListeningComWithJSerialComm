@@ -104,13 +104,11 @@ public class ListeningCom implements SerialPortDataListener {
 		for (int i = 0; i < ports.length; i++) {
 			result[i] = ports[i].getSystemPortName();
 		}
-
 		return result;
 	}
 
 	public void openPort() {
-		//SerialPort userPort = SerialPort.getCommPort((String) AdvancedMainFrame.jComboBox.getSelectedItem());
-		//Initializing port
+		
 		if(userPort.isOpen()) {
 			AdvancedMainFrame.addToJTextArea("Port " + AdvancedMainFrame.getJComboBoxItem() +
 					" is already opened or not available");

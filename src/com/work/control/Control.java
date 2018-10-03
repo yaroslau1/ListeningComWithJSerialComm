@@ -141,9 +141,6 @@ public class Control extends Thread {
 			bs = Integer.toBinaryString(data);
 			bs = bs.substring(24, 32);
 		}
-
-		//System.out.println(bs);
-		//System.out.println(Integer.parseInt(bs,2));
 		return bs;
 
 	}
