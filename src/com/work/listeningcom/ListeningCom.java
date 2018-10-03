@@ -185,7 +185,7 @@ public class ListeningCom implements SerialPortDataListener {
 			}
 			//control.addToList(bytesRiesived);
 			
-			AdvancedMainFrame.addToJTextArea("Read " + numRead + " bytes." + Arrays.toString(readBuffer));
+			//AdvancedMainFrame.addToJTextArea("Read " + numRead + " bytes." + Arrays.toString(readBuffer));
 
 		}
 	}

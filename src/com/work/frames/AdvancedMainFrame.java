@@ -441,6 +441,10 @@ public class AdvancedMainFrame extends JFrame {
 	public static void addToJTextArea(Long time) {
 		jTextArea.append("\n" + time);
 	}
+	
+	public static void addToJTextArea(int size) {
+		jTextArea.append("\n" + size);
+	}
 
 	public static void setSendActive() {
 		send.setEnabled(true);
@@ -469,5 +473,7 @@ public class AdvancedMainFrame extends JFrame {
 		refresh.setEnabled(false);
 		connect.setEnabled(false);
 	}
+
+	
 
 }

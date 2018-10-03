@@ -1,5 +1,6 @@
 package com.work.control;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -9,7 +10,7 @@ import com.work.listeningcom.ListeningCom;
 
 public class Control extends Thread {
 
-	private LinkedList<Byte> bytesRiesived;
+	private ArrayList<Byte> bytesRiesived;
 	private LinkedList<Integer> listIntegers = new LinkedList<>();
 	private LinkedList<Integer> secondChanel = new LinkedList<>();
 	private LinkedList<Integer> thirdChanel = new LinkedList<>();
@@ -20,7 +21,7 @@ public class Control extends Thread {
 	private LinkedList<Integer> eighthChanel = new LinkedList<>();
 	
 	public Control() {
-		bytesRiesived = new LinkedList<>();
+		bytesRiesived = new ArrayList<>();
 	}
 
 	public void addToList(LinkedList<Byte> addBytes) {
@@ -34,6 +35,45 @@ public class Control extends Thread {
 
 	public void parseArray(byte[] readBuffer) {
 
+	}
+	
+	public void parseArray(ArrayList<Byte> bytesRiesived) {
+		/*for(int i = 0; i < bytesRiesived.size(); i++) {
+			if(bytesRiesived.get(i) == 92) {
+				bytesRiesived.remove(i);
+			}
+			if(bytesRiesived.get(i) == -59) {
+				bytesRiesived.remove(i);
+				i-=2;
+
+			}
+		}*/
+		for(int i = 0; i < bytesRiesived.size(); i++) {
+			if(bytesRiesived.get(i) == 92 && bytesRiesived.get(i+26) == -59) {
+
+				listIntegers.add(fromBinToInt(dataToBin(bytesRiesived.get(i+1)) + 
+						dataToBin(bytesRiesived.get(i+2)) + dataToBin(bytesRiesived.get(i+3))) + 600000);
+				secondChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+4)) + 
+						dataToBin(bytesRiesived.get(i+5)) + dataToBin(bytesRiesived.get(i+6))) + 450000);
+				thirdChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+7)) + 
+						dataToBin(bytesRiesived.get(i+8)) + dataToBin(bytesRiesived.get(i+9))) + 300000);
+				fourthChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+10)) + 
+						dataToBin(bytesRiesived.get(i+11)) + dataToBin(bytesRiesived.get(i+12))) + 150000);
+				fifthChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+13)) + 
+						dataToBin(bytesRiesived.get(i+14)) + dataToBin(bytesRiesived.get(i+15))) + 0);
+				sixthChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+16)) + 
+						dataToBin(bytesRiesived.get(i+17)) + dataToBin(bytesRiesived.get(i+18))) - 150000);
+				seventhChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+19)) + 
+						dataToBin(bytesRiesived.get(i+20)) + dataToBin(bytesRiesived.get(i+21))) - 300000);
+				eighthChanel.add(fromBinToInt(dataToBin(bytesRiesived.get(i+22)) + 
+						dataToBin(bytesRiesived.get(i+23)) + dataToBin(bytesRiesived.get(i+24))) - 450000);
+
+
+				i += 26;
+			}
+		}
+		//System.out.println("done!");
+		addToArea();
 	}
 
 	public void parseArray(LinkedList<Byte> bytesRiesived) {
@@ -110,7 +150,7 @@ public class Control extends Thread {
 
 	public void addToArea() {
 
-		//AdvancedMainFrame.addToJTextArea(listIntegers.toString());
+		AdvancedMainFrame.addToJTextArea(bytesRiesived.size());
 
 		for(int i: listIntegers) {
 			AdvancedMainFrame.addToJTextArea(String.valueOf(i));
